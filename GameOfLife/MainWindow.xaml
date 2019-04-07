@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameOfLife"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="MainWindow" Height="858.6" Width="1085.6">
     <Grid>
-        
+        <Canvas Name="cnvTest" HorizontalAlignment="Left" Height="809" Margin="10,10,0,0" VerticalAlignment="Top" Width="1059">
+            <Button Content="Start" Canvas.Left="501" Canvas.Top="732" Width="75" Click="Start_Click"/>
+            <Button Content="Stop" Canvas.Left="604" Canvas.Top="732" Width="75" Click="Stop_Click"/>
+        </Canvas>
+
     </Grid>
 </Window>
