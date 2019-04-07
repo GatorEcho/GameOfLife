@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameOfLife"
         mc:Ignorable="d" Loaded="Window_Loaded"
-        Title="MainWindow" Height="858.6" Width="1085.6">
+        Title="MainWindow" Height="631.402" Width="554.981">
     <Grid>
-        <Canvas Name="cnvTest" HorizontalAlignment="Left" Height="809" Margin="10,10,0,0" VerticalAlignment="Top" Width="1059">
-            <Button Content="Start" Canvas.Left="501" Canvas.Top="732" Width="75" Click="Start_Click"/>
-            <Button Content="Stop" Canvas.Left="604" Canvas.Top="732" Width="75" Click="Stop_Click"/>
+        <Canvas Name="cnvTest" HorizontalAlignment="Left" Height="550" Margin="10,10,0,0" VerticalAlignment="Top" Width="516">
+            <Button Content="Start" Canvas.Left="168" Canvas.Top="560" Width="75" Click="Start_Click"/>
+            <Button Content="Stop" Canvas.Left="271" Canvas.Top="560" Width="75" Click="Stop_Click"/>
         </Canvas>
 
     </Grid>

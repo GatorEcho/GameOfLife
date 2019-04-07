@@ -23,25 +23,6 @@ namespace GameOfLife
             InitializeComponent();
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e)
-        {
-            tmr.Interval = 1000;
-            tmr.Start();
-            tmr.Elapsed += (s, rea) =>
-            {
-                GameBoard gameBoard = new GameBoard(gameNodes);
-                gameBoard.EvaluateBoard();
-            };
-        }
-        private void Stop_Click(object sender, RoutedEventArgs e)
-        {
-            tmr.Stop();
-            foreach(GameNode node in gameNodes)
-            {
-                node.Kill();
-            }
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             int number = 2501;
@@ -59,10 +40,9 @@ namespace GameOfLife
                 {
                     Width = width,
                     Height = height,
-                    Fill = Brushes.DarkSlateGray,
-                    Stroke = Brushes.Black,
+                    Fill = Brushes.Black,
+                    Stroke = Brushes.AntiqueWhite,
                     StrokeThickness = 1,
-
                 };
 
                 rec.MouseLeftButtonDown += (send, eventargs) =>
@@ -75,7 +55,7 @@ namespace GameOfLife
                 Canvas.SetLeft(rec, left);
                 ;
 
-                GameNode node = new GameNode(rec, x, y, false);
+                GameNode node = new GameNode(rec, x, y, false, 0);
                 gameNodes.Add(node);
 
                 left += 10;
@@ -87,6 +67,26 @@ namespace GameOfLife
                     x = 0;
                 }
                 x++;
+            }
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            tmr.Interval = 1000;
+            tmr.Start();
+            tmr.Elapsed += (s, rea) =>
+            {
+                GameBoard gameBoard = new GameBoard(gameNodes);
+                gameBoard.EvaluateBoard();
+                gameBoard.UpdateBoard();
+            };
+        }
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            tmr.Stop();
+            foreach(GameNode node in gameNodes)
+            {
+                node.Kill();
             }
         }
 

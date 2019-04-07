@@ -57,9 +57,24 @@ namespace GameOfLife
 
                 if ((node.Alive && count < 2) || (node.Alive && count > 3))
                 {
-                    node.Kill();
+                    node._state = GameNode.State.WillDie;
                 }
                 else if (!node.Alive && count == 3)
+                {
+                    node._state = GameNode.State.WillBirth;
+                }
+            }
+        }
+
+        public void UpdateBoard()
+        {
+            foreach(var node in GameNodes)
+            {
+                if(node._state == GameNode.State.WillDie)
+                {
+                    node.Kill();                    
+                }
+                else if(node._state == GameNode.State.WillBirth)
                 {
                     node.Birth();
                 }
