@@ -36,7 +36,7 @@ namespace GameOfLife
         {
             Rec.Dispatcher.Invoke(() =>
             {
-                Rec.Fill = Brushes.LimeGreen;
+                Rec.Fill = Brushes.GreenYellow;
             });
             Alive = true;
             _state = State.Idle;

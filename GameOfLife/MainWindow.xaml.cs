@@ -41,7 +41,7 @@ namespace GameOfLife
                     Width = width,
                     Height = height,
                     Fill = Brushes.Black,
-                    Stroke = Brushes.AntiqueWhite,
+                    Stroke = Brushes.DarkSlateGray,
                     StrokeThickness = 1,
                 };
 
@@ -49,6 +49,19 @@ namespace GameOfLife
                 {
                     Flip_Rectangle(rec);
                 };
+
+                rec.MouseEnter += (send, eventargs) =>
+                {
+                    if (eventargs.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+                    {
+                        Drag_Rectangle(rec, false);
+                    }
+                    else if (eventargs.RightButton == System.Windows.Input.MouseButtonState.Pressed)
+                    {
+                        Drag_Rectangle(rec, true);
+                    }
+                };
+
                 // Add to a canvas
                 cnvTest.Children.Add(rec);
                 Canvas.SetTop(rec, top);
@@ -84,7 +97,7 @@ namespace GameOfLife
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
             tmr.Stop();
-            foreach(GameNode node in gameNodes)
+            foreach (GameNode node in gameNodes)
             {
                 node.Kill();
             }
@@ -93,12 +106,26 @@ namespace GameOfLife
         private void Flip_Rectangle(Rectangle rec)
         {
             var node = gameNodes.Select(n => n).Where(n => n.Rec == rec).FirstOrDefault();
-            
+
             if (node.Alive)
             {
                 node.Kill();
             }
             else
+            {
+                node.Birth();
+            }
+        }
+
+        private void Drag_Rectangle(Rectangle rec, bool kill)
+        {
+            var node = gameNodes.Select(n => n).Where(n => n.Rec == rec).FirstOrDefault();
+
+            if (node.Alive && kill)
+            {
+                node.Kill();
+            }
+            else if (!node.Alive && !kill)
             {
                 node.Birth();
             }
